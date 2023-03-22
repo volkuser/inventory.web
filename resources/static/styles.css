@@ -52,6 +52,12 @@ nav{
     outline:none !important;
 }
 
+.navbar-header{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 
 .search-line{
     display: flex;
@@ -170,7 +176,8 @@ nav{
 .Type_class,
 .Audience_class,
 .Corpus_class,
-.Equipment_class {
+.Equipment_class,
+.Country_class {
     display: flex !important;
     justify-content: center !important;
     padding-top: 16px;
@@ -182,7 +189,7 @@ nav{
     font-size: 16px;
     line-height: 130%;
     border: none;
-    border-radius: 36px;
+    border-radius: 6px;
     width: 310px;
     color: #426671 !important;
     outline:none;
@@ -196,7 +203,8 @@ nav{
 .Type_class::placeholder,
 .Audience_class::placeholder,
 .Corpus_class::placeholder,
-.Equipment_class::placeholder{
+.Equipment_class::placeholder
+.Country_class::placeholder{
 color: #829CA3;
 }
 
@@ -360,8 +368,6 @@ thead {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 40px;
     width: 100%;
     position: relative;
 }
@@ -437,4 +443,74 @@ right: 0px;
     border-radius:none !important;
     background-color: #78C1C1 !important;
     color: #fff !important;
+}
+
+
+.modal-body{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    padding-top: 6px !important;
+}
+
+.modal-body a{
+    text-decoration: none !important;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    text-transform: uppercase;
+    color: #426671;
+    padding-top: 6px;
+    padding-bottom: 10px;
+}
+
+.modal-body a:hover {
+    color:#78C1C1;
+}
+.modal-body a:active{
+    color: #92d3d3 !important;
+}
+
+ .modal-dialog {
+    width: 336px !important;
+}
+
+.modal-header{
+    padding-bottom: 6px !important;
+}
+
+.modal-content {
+    background-color: #D0ECEC !important;
+}
+
+
+
+
+.modal-body-newType,
+.modal-body-newEquipment {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-top: 20px !important;
+}
+
+.modal-dialog-newType {
+    width: 358px !important;
+}
+
+.modal-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cancel{
+    font-size: 14px !important;
+    color: #78C1C1 !important;
+    padding-left: 4px;
 }
