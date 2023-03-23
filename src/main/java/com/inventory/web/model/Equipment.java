@@ -1,12 +1,8 @@
 package com.inventory.web.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -24,14 +20,6 @@ public class Equipment {
     @Size(max = 100)
     @Column(name = "model_name")
     private String modelName;
-
-    @Size(max = 50)
-    @Column(name = "product_code")
-    private String productCode;
-
-    @Size(max = 100)
-    @Column(name = "description")
-    private String description;
 
     @NotNull
     @ManyToOne
