@@ -15,7 +15,7 @@ body{
     background-color: #E5F4F4 !important;
 }
 
-h1{
+h1{ 
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 500;
@@ -513,4 +513,20 @@ right: 0px;
     font-size: 14px !important;
     color: #78C1C1 !important;
     padding-left: 4px;
+}
+
+
+
+/* ========================================
+========================================
+=============================== */
+
+
+.eq-section-1 {
+    padding-top: 120px;
+}
+
+.eq-back{
+    background-color: none !important;
+    border: none !important;
 }
