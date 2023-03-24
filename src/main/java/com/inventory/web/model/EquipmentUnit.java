@@ -18,6 +18,9 @@ public class EquipmentUnit {
     @Column(name = "equipment_unit_id")
     private Long equipmentUnitId;
 
+    @Column(name = "inventory_number")
+    private String inventoryNumber;
+
     @ManyToOne
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;

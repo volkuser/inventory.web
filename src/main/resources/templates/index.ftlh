@@ -32,8 +32,11 @@
               <div class="column column-2">
 
                 <select class="Corpus_class first custom-select" id="Corpus" name="Corpus">
-                  <option class="op1" value="1">Нахимовский проспект, 21</option>
-                  <option class="op2" value="2">Нежинская улица, 7</option>
+                  <#list trainingCenters as trainingCenter>
+                    <option value="${trainingCenter.trainingCenterId}">${trainingCenter.centerAddress}</option>
+                  </#list>
+                  <#--<option class="op1" value="1">Нахимовский проспект, 21</option>
+                  <option class="op2" value="2">Нежинская улица, 7</option>-->
                 </select>
 
                 <div class="inPlace_class custom-control custom-checkbox">
@@ -136,96 +139,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td class="col-1">123456789012</td>
-        <td class="col-2">Принтер</td>
-        <td class="col-3">SVF-49502 pcsd YS</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">101</td>
-        <td class="col-6"><img src="../static/images/False.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">13453535</td>
-        <td class="col-2">Компьютерный стол</td>
-        <td class="col-3">Delta</td>
-        <td class="col-4">Нежинская улица, 7</td>
-        <td class="col-5">303</td>
-        <td class="col-6"><img src="../static/images/True.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">543677980985</td>
-        <td class="col-2">Проектор</td>
-        <td class="col-3">Lor -3535 23 KLAY</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">105</td>
-        <td class="col-6"><img src="../static/images/True.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">1233452</td>
-        <td class="col-2">Сканер</td>
-        <td class="col-3">ABCDEFG HI GKLMNOP</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">101</td>
-        <td class="col-6"><img src="../static/images/False.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">1230002</td>
-        <td class="col-2">Кресло</td>
-        <td class="col-3">Хюлеитпакер лазер джет</td>
-        <td class="col-4">Нежинская улица, 7</td>
-        <td class="col-5">606</td>
-        <td class="col-6"><img src="../static/images/False.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">5523493</td>
-        <td class="col-2">Принтер</td>
-        <td class="col-3">SVF-49502 pcsd YS</td>
-        <td class="col-4">Нежинская улица, 7</td>
-        <td class="col-5">730</td>
-        <td class="col-6"><img src="../static/images/True.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">100342</td>
-        <td class="col-2">Принтер</td>
-        <td class="col-3">SRE - psdgk adddd</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">343</td>
-        <td class="col-6"><img src="../static/images/True.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">900824</td>
-        <td class="col-2">Принтер</td>
-        <td class="col-3">SVF-49502 pcsd YS</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">364</td>
-        <td class="col-6"><img src="../static/images/False.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">6609238430</td>
-        <td class="col-2">Компьютер</td>
-        <td class="col-3">NOTE LAB T463</td>
-        <td class="col-4">Нахимовский проспект, 21</td>
-        <td class="col-5">101</td>
-        <td class="col-6"><img src="../static/images/True.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
-      <tr>
-        <td class="col-1">23412</td>
-        <td class="col-2">Принтер</td>
-        <td class="col-3">SVF-49502 pcsd YS</td>
-        <td class="col-4">Нежинская улица, 7</td>
-        <td class="col-5">101</td>
-        <td class="col-6"><img src="../static/images/False.svg"></td>
-        <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
-      </tr>
+      <#list equipmentUnits as equipmentUnit>
+        <tr>
+          <td class="col-1">${equipmentUnit.inventoryNumber}</td>
+          <td class="col-2">Принтер</td>
+          <td class="col-3">SVF-49502 pcsd YS</td>
+          <td class="col-4">Нахимовский проспект, 21</td>
+          <td class="col-5">101</td>
+          <td class="col-6"><img src="../static/images/False.svg"></td>
+          <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
+        </tr>
+      </#list>
       </tbody>
     </table>
 
