@@ -298,13 +298,13 @@ thead {
 }
 
 .col-1{
-    width: 110px !important;
+    width: 162.29px !important;
     padding: 18px 18px 18px 36px !important;
     padding-top: 28px !important;
 }
 
 .col-2{
-    width: 15% !important;
+    width: 180px !important;
     padding:  18px !important;
     padding-top: 28px !important;
 }
@@ -322,19 +322,19 @@ thead {
 }
 
 .col-5 {
-    width: 64px !important;
+    width: 117.72px !important;
     padding: 18px !important;
     padding-top: 28px !important;
 }
 
 .col-6 {
-    width: 64px !important;
+    width: 77.78px !important;
     padding: 18px 0px 18px 18px !important;
     padding-top: 28px !important;
 }
 
 .col-7{
-    width: 85px !important;
+    width: 138.44px !important;
     padding: 28px 36px 18px 18px !important;
 }
 
@@ -596,7 +596,7 @@ right: 0px;
 }
 
 .div6-span6 {
-    height: 69px;
+    height: 69px;  
 }
 .eq-section-2 .chek {
     margin-right: 286px;
