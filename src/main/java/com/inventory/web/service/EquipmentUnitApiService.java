@@ -15,17 +15,24 @@ import org.springframework.web.client.RestTemplate;
 
         private RestTemplate restTemplate;
 
-        public void Task(RestTemplate restTemplate) {
-            this.restTemplate = restTemplate;
-        }
-
         public List<EquipmentUnit> getAllEquipmentUnits() {
             String url = "http://localhost:8081/equipment-units";
             EquipmentUnit[] equipmentUnit = restTemplate.getForObject(url, EquipmentUnit[].class);
             return Arrays.asList(equipmentUnit);
         }
 
-            public EquipmentUnit getEquipmentUnitById(Long equipmentUnitId) {
+        public List<EquipmentUnit> getAllEquipmentUnitsPaginated(int offset, int limit) {
+            String url = "http://localhost:8081/equipment-units/paginated?offset=" + offset + "&limit=" + limit;
+            EquipmentUnit[] equipmentUnit = restTemplate.getForObject(url, EquipmentUnit[].class);
+            return Arrays.asList(equipmentUnit);
+        }
+
+        public int getEquipmentUnitsCount() {
+            String url = "http://localhost:8081/equipment-units/count";
+            return restTemplate.getForObject(url, int.class) != null ? restTemplate.getForObject(url, int.class) : 0;
+        }
+
+        public EquipmentUnit getEquipmentUnitById(Long equipmentUnitId) {
             String url = "http://localhost:8081/equipment-units/{id}";
                 EquipmentUnit equipmentUnit = restTemplate.getForObject(url, EquipmentUnit.class, equipmentUnitId);
             return equipmentUnit;

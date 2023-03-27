@@ -142,11 +142,15 @@
       <#list equipmentUnits as equipmentUnit>
         <tr>
           <td class="col-1">${equipmentUnit.inventoryNumber}</td>
-          <td class="col-2">Принтер</td>
-          <td class="col-3">SVF-49502 pcsd YS</td>
-          <td class="col-4">Нахимовский проспект, 21</td>
-          <td class="col-5">101</td>
-          <td class="col-6"><img src="../static/images/False.svg"></td>
+          <td class="col-2">${equipmentUnit.equipment.equipmentType.equipmentTypeName}</td>
+          <td class="col-3">${equipmentUnit.equipment.modelName}</td>
+          <td class="col-4">${equipmentUnit.location.trainingCenter.centerAddress}</td>
+          <td class="col-5">${equipmentUnit.location.locationNumber}</td>
+          <#if equipmentUnit.onState>
+            <td class="col-6"><img src="../static/images/False.svg"></td>
+          <#else>
+            <td class="col-6"><img src="../static/images/True.svg"></td>
+          </#if>
           <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
         </tr>
       </#list>
@@ -155,27 +159,27 @@
 
     <div class="buttons">
 
-      <button class="btn page-back">
+      <a class="btn page-back" href="/equipment-units/previous">
         <div class="left-arrow"></div>
-      </button>
+      </a>
 
       <button class="btn page">
-        1
+        ${currentPageNumber}
       </button>
 
-      <button class="btn page-next">
+      <a class="btn page-next" href="/equipment-units/next">
         <div class="right-arrow"></div>
-      </button>
+      </a>
 
-      <div class="buttons-star-end">
+      <div class="buttons-star-end" >
 
-        <button class="btn btn-start-page">
+        <a class="btn btn-start-page" href="/equipment-units/begin">
           Начало
-        </button>
+        </a>
 
-        <button class="btn btn-end-page">
+        <a class="btn btn-end-page" href="/equipment-units/end">
           Конец
-        </button>
+        </a>
 
       </div>
 

@@ -33,6 +33,9 @@ public class EquipmentUnit {
     @JoinColumn(name = "responsible_person_id")
     private Employee responsiblePerson;
 
+    @Column(name = "on_state")
+    private boolean onState;
+
     @Column(name = "guid_code")
     private UUID guidCode;
 }
