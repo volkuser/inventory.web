@@ -15,6 +15,13 @@ body{
     background-color: #E5F4F4 !important;
 }
 
+.nav-link{
+    color: rgba(66, 102, 113, 0.5) !important;
+}
+
+.active {
+    color: #426671 !important;
+}
 h1{
     font-family: 'Ubuntu';
     font-style: normal;
@@ -530,6 +537,7 @@ thead {
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
+    margin-bottom: 60px;
 }
 
 .eq-back{
@@ -560,11 +568,16 @@ thead {
 }
 
 .img-box {
-    padding: 40px;
+    position: relative;
     background-color: #fff;
     display: flex;
     width: auto;
+    height: auto;
 }
+.img-box img{
+    width: 100%;
+}
+
 .divspan {
     display: flex;
     flex-direction: row;
@@ -601,4 +614,87 @@ thead {
 .eq-section-2 .chek {
     margin-right: 286px;
     margin-bottom: 20px;
+}
+
+.eq-qr-buttons .btn {
+    height: 46px;
+    padding: 10px 30px !important;
+    font-size: 16px;
+    font-family: Ubuntu;
+    border-radius: 6px !important;
+    background-color: #D0ECEC !important;
+    color: #78C1C1 !important;
+}
+.eq-qr-buttons .btn:hover{
+    background-color: #426671 !important;
+    color: #78c1c1 !important;
+}
+
+.eq-qr-buttons img{
+    padding-right: 10px;
+}
+
+.eq-qr-buttons{
+    margin-top: 20px;
+}
+
+.eq-forma{
+    margin-left: 100px;
+    position: relative;
+}
+
+.eq-form-buttons{
+    position: absolute;
+    right: 0px;
+    margin-top: 60px;
+}
+
+.eq-btn-delete,
+.eq-btn-save {
+    height: 46px;
+    padding: 10px 34px !important;
+    font-size: 16px;
+    font-family: Ubuntu;
+    border-radius: 6px !important;
+    background-color: #78C1C1 !important;
+    color: #ffffff !important;
+}
+
+.eq-btn-delete {
+    background-color: #D0ECEC !important;
+    color: #78C1C1 !important;
+    margin-right: 10px;
+}
+
+.eq-btn-save:hover{
+    background-color: #426671 !important;
+    color: #ffffff !important;
+}
+.eq-btn-delete:hover{
+    background-color: #426671 !important;
+    color: #ffffff !important;
+}
+
+
+
+
+
+/* ========================================
+========================================
+=============================== */
+
+
+
+.pr-p{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 130%;
+    color: #78C1C1;
+    padding-top: 160px;
+}
+
+.pr-h1 {
+    padding-top: 0px !important;
 }

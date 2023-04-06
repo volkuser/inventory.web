@@ -7,10 +7,10 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Единицы оборудования</a>
+                        <a class="nav-link active" aria-current="page" href="equipment-units">Единицы оборудования</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Профиль</a>
+                        <a class="nav-link" href="profile">Профиль</a>
                     </li>
                 </ul>
             </div>

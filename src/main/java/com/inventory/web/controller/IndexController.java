@@ -43,15 +43,15 @@ public class IndexController {
     private void loadDataPlus(Model model){
         loadData(model);
 
-        List<TrainingCenter> trainingCenters = trainingCenterApiService.getAllTrainingCenters();
+        List<TrainingCenter> trainingCenters = trainingCenterApiService.getAll();
         model.addAttribute("trainingCenters", trainingCenters);
     }
 
     private void loadData(Model model){
-        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAllEquipmentUnitsPaginated(currentPageNumber - 1, PAGE_LIMIT);
+        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT);
         model.addAttribute("equipmentUnits", equipmentUnits);
 
-        elementsCount = equipmentUnitApiService.getEquipmentUnitsCount();
+        elementsCount = equipmentUnitApiService.getCount();
         model.addAttribute("currentPageNumber", currentPageNumber);
     }
 

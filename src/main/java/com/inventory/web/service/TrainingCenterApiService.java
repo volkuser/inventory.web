@@ -15,32 +15,32 @@ public class TrainingCenterApiService {
 
     private RestTemplate restTemplate;
 
-    public List<TrainingCenter> getAllTrainingCenters() {
+    public List<TrainingCenter> getAll() {
         String url = "http://localhost:8081/training-centers";
-        TrainingCenter[] trainingCenters = restTemplate.getForObject(url, TrainingCenter[].class);
-        return Arrays.asList(trainingCenters);
+        TrainingCenter[] listWithEntities = restTemplate.getForObject(url, TrainingCenter[].class);
+        return Arrays.asList(listWithEntities);
     }
 
-    public TrainingCenter getTrainingCenterById(Long trainingCenterId) {
-        String url = "http://localhost:8080/training-centers/{id}";
-        TrainingCenter trainingCenter = restTemplate.getForObject(url, TrainingCenter.class, trainingCenterId);
-        return trainingCenter;
+    public TrainingCenter getById(Long id) {
+        String url = "http://localhost:8081/training-centers/{id}";
+        TrainingCenter entity = restTemplate.getForObject(url, TrainingCenter.class, id);
+        return entity;
     }
 
-    public TrainingCenter createTrainingCenter(TrainingCenter trainingCenter) {
+    public TrainingCenter create(TrainingCenter entity) {
         String url = "http://localhost:8081/training-centers";
-        TrainingCenter createdTrainingCenter = restTemplate.postForObject(url, trainingCenter, TrainingCenter.class);
-        return createdTrainingCenter;
+        TrainingCenter created = restTemplate.postForObject(url, entity, TrainingCenter.class);
+        return created;
     }
 
-    public TrainingCenter updateTrainingCenter(Long trainingCenterId, TrainingCenter trainingCenter) {
+    public TrainingCenter update(Long id, TrainingCenter updated) {
         String url = "http://localhost:8081/training-centers/{id}";
-        restTemplate.put(url, trainingCenter, trainingCenterId);
-        return trainingCenter;
+        restTemplate.put(url, updated, id);
+        return updated;
     }
 
-    public void deleteTrainingCenter(Long trainingCenterId) {
+    public void delete(Long id) {
         String url = "http://localhost:8081/training-centers/{id}";
-        restTemplate.delete(url, trainingCenterId);
+        restTemplate.delete(url, id);
     }
 }

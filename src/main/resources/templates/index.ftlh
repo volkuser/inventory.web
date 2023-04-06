@@ -35,8 +35,6 @@
                   <#list trainingCenters as trainingCenter>
                     <option value="${trainingCenter.trainingCenterId}">${trainingCenter.centerAddress}</option>
                   </#list>
-                  <#--<option class="op1" value="1">Нахимовский проспект, 21</option>
-                  <option class="op2" value="2">Нежинская улица, 7</option>-->
                 </select>
 
                 <div class="inPlace_class custom-control custom-checkbox">
@@ -109,9 +107,9 @@
         <div class="modal-body modal-body-newEquipment">
           <form >
             <div class="forma">
-              <input type="text" class="Type_class first" name="Type"   placeholder="Тип">
-              <input type="text" class="Country_class first" name="Country"   placeholder="Страна">
-              <input type="text" class="Equipment_class first" name="Equipment"   placeholder="Оборудование">
+              <input type="text" class="Type_class first" name="Type" placeholder="Тип">
+              <input type="text" class="Country_class first" name="Country" placeholder="Страна">
+              <input type="text" class="Equipment_class first" name="Equipment" placeholder="Оборудование">
               <div class="modal-buttons">
                 <a class="btn-cancel" href="#">oтмeнить</a>
                 <button class="btn save">
@@ -151,7 +149,7 @@
           <#else>
             <td class="col-6"><img src="../static/images/True.svg"></td>
           </#if>
-          <td class="col-7"><a class="btn-more" href="#">подробнее</a></td>
+          <td class="col-7"><a class="btn-more" href="/equipment-units/${equipmentUnit.equipmentUnitId}">подробнее</a></td>
         </tr>
       </#list>
       </tbody>
