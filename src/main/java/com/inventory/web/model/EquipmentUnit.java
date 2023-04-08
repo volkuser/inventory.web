@@ -29,7 +29,6 @@ public class EquipmentUnit {
     @JoinColumn(name = "location_id")
     private Location location;
 
-
     @Column(name = "on_state")
     private boolean onState;
 

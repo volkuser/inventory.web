@@ -3,14 +3,17 @@ package com.inventory.web.controller;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.inventory.web.model.Equipment;
 import com.inventory.web.model.EquipmentType;
 import com.inventory.web.model.EquipmentUnit;
+import com.inventory.web.model.Location;
 import com.inventory.web.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
@@ -29,12 +32,12 @@ public class EquipmentController {
     public EquipmentTypeApiService equipmentTypeApiService;
 
     @GetMapping
-    public String show(Model model, @PathVariable("id") Long id, HttpServletResponse response){
-        loadData(model, id, response, (long) -1);
+    public String show(Model model, @PathVariable("id") Long id){
+        loadData(model, id, (long) -1);
         return "equipment";
     }
 
-    private void loadData(Model model, Long id, HttpServletResponse response, Long typeId) {
+    private void loadData(Model model, Long id, Long typeId) {
         if (id == -1) return; /// TODO if new model
         EquipmentUnit unit = equipmentUnitApiService.getById(id);
         model.addAttribute("current", unit);
@@ -47,12 +50,28 @@ public class EquipmentController {
 
         model.addAttribute("trainingCenters", trainingCenterApiService.getAll());
         /// TODO realize location by training center
-        model.addAttribute("audience", unit.getLocation().getLocationNumber());
+        model.addAttribute("audience", unit.getLocation());
     }
 
     @PostMapping
-    private String typeChanged(Model model, @PathVariable(value = "id") Long id, @RequestParam(value = "type") Long typeId, HttpServletResponse response){
-        loadData(model, id, response, typeId);
+    private String save(@PathVariable(value = "id") Long id, @ModelAttribute(value = "invNumber") String inventoryNumber,
+                        /*@ModelAttribute(value = "audience") String audience, */@RequestParam(value = "equipment") String equipment,
+                        @RequestParam(value = "onStateAsString", defaultValue = "off") String onStateAsString){
+        EquipmentUnit current = equipmentUnitApiService.getById(id);
+
+        current.setInventoryNumber(inventoryNumber);
+        current.setEquipment(equipmentApiService.getById(Long.valueOf(equipment)));
+        //current.setLocation(locationApiService.getById(Long.parseLong(audience)));
+        current.setOnState(onStateAsString.equals("on"));
+
+        equipmentUnitApiService.update(id, current);
+
+        return "redirect:/equipment-units/" + id;
+    }
+
+    @PostMapping("/type-change")
+    private String typeChanged(Model model, @PathVariable(value = "id") Long id, @RequestParam(value = "type") Long typeId){
+        loadData(model, id, typeId);
 
         return "equipment";
     }
