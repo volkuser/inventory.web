@@ -54,5 +54,24 @@ import org.springframework.web.client.RestTemplate;
             String url = "http://localhost:8081/equipment-units/{id}";
             restTemplate.delete(url, id);
         }
+
+        public List<EquipmentUnit> searchByInventoryNumber(String query, List<EquipmentUnit> equipmentUnits) {
+            String url = "http://localhost:8081/equipment-units/search?query=" + query;
+            EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class, equipmentUnits);
+            return Arrays.asList(listWithEntities);
+        }
+
+        public List<EquipmentUnit> getByEquipment(Long equipmentId, List<EquipmentUnit> equipmentUnits) {
+            String url = "http://localhost:8081/equipment-units/by-equipment/" + equipmentId;
+            EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class, equipmentUnits);
+            return Arrays.asList(listWithEntities);
+        }
+
+        public List<EquipmentUnit> getByLocation(String locationId, List<EquipmentUnit> equipmentUnits) {
+            String url = "http://localhost:8081/equipment-units/by-location/" + locationId;
+            EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class, equipmentUnits);
+            return Arrays.asList(listWithEntities);
+        }
+
     }
 

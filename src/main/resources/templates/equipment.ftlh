@@ -5,7 +5,7 @@
 <div class="eq-container">
     <div class="eq-section-1">
         <button class="eq-back">
-            <a href="/equipment-units"><img src="../static/images/Union.svg"></a>
+            <a href="/equipment-units"><img src="/static/images/Union.svg"></a>
         </button>
     </div>
 
@@ -18,11 +18,11 @@
             </div>
             <div class="eq-qr-buttons">
                 <button class="btn-print btn">
-                    <img class="icon-white" src="../static/images/print Green.svg">
+                    <img class="icon-white" src="/static/images/print Green.svg">
                     Печать
                 </button>
                 <button class="btn-qr-save btn">
-                    <img class="icon-white" src="../static/images/down Green.svg">
+                    <img class="icon-white" src="/static/images/down Green.svg">
                     Сохранить
                 </button>
             </div>

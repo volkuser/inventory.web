@@ -145,9 +145,9 @@
           <td class="col-4">${equipmentUnit.location.trainingCenter.centerAddress}</td>
           <td class="col-5">${equipmentUnit.location.locationNumber}</td>
           <#if equipmentUnit.onState>
-            <td class="col-6"><img src="../static/images/True.svg"></td>
+            <td class="col-6"><img src="/static/images/True.svg"></td>
           <#else>
-            <td class="col-6"><img src="../static/images/False.svg"></td>
+            <td class="col-6"><img src="/static/images/False.svg"></td>
           </#if>
           <td class="col-7"><a class="btn-more" href="/equipment-units/${equipmentUnit.equipmentUnitId}">подробнее</a></td>
         </tr>
