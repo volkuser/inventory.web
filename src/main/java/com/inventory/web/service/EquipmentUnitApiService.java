@@ -55,6 +55,12 @@ import org.springframework.web.client.RestTemplate;
             restTemplate.delete(url, id);
         }
 
+        public List<EquipmentUnit> getAllPaginated(int offset, int limit, List<EquipmentUnit> equipmentUnits) {
+            String url = "http://localhost:8081/equipment-units/paginated?offset=" + offset + "&limit=" + limit;
+            EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class, equipmentUnits);
+            return Arrays.asList(listWithEntities);
+        }
+
         public List<EquipmentUnit> searchByInventoryNumber(String query, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/search?query=" + query;
             EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class, equipmentUnits);

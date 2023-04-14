@@ -48,7 +48,7 @@ public class IndexController {
     }
 
     private void loadData(Model model){
-        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT);
+        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT, equipmentUnitApiService.getAll());
         model.addAttribute("equipmentUnits", equipmentUnits);
 
         elementsCount = equipmentUnitApiService.getCount();

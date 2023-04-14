@@ -25,27 +25,26 @@
           <form class="form-filtr">
             <div class="card card-body">
               <div class="column column-1">
-                <input class="Type_class first" name="Type" type="text" placeholder="Тип">
-                <input class="Audience_class" name="Audience" type="number" placeholder="Аудитория">
-              </div>
-
+              <select class="Corpus_class first custom-select" id="Corpus" name="Corpus">
+                <#list trainingCenters as trainingCenter>
+                  <option value="${trainingCenter.trainingCenterId}">${trainingCenter.centerAddress}</option>
+                </#list>
+              </select>
+              <input class="Type_class" name="Type" type="text" placeholder="Тип">
+            </div>
               <div class="column column-2">
 
-                <select class="Corpus_class first custom-select" id="Corpus" name="Corpus">
-                  <#list trainingCenters as trainingCenter>
-                    <option value="${trainingCenter.trainingCenterId}">${trainingCenter.centerAddress}</option>
-                  </#list>
-                </select>
+                <input class="Audience_class first" name="Audience" type="number" placeholder="Аудитория">
+                <input class="Equipment_class" name="Equipment" type="text" placeholder="Оборудование">
 
-                <div class="inPlace_class custom-control custom-checkbox">
+                <#--<div class="inPlace_class custom-control custom-checkbox">
                   <label class="inPlace_label custom-control-label" for="inPlace">Наличие</label>
                   <input type="checkbox" class="chek custom-control-input" id="inPlace">
-                </div>
+                </div>-->
 
               </div>
 
               <div class="column column-3">
-                <input class="Equipment_class first" name="Equipment" type="text" placeholder="Оборудование">
                 <div class="buttons">
                   <button type="reset" class="btn reset"></button>
                   <button class="btn save" type="button" name="save">Применить</button>
