@@ -10,16 +10,19 @@
     <div class="container">
 
       <div class="input-group">
-        <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="btn btn-search">Найти</button>
 
-        <p>
+        <form class="search-form" method="post" action="/equipment-units/search">
+            <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" name="searchQuery"/>
+            <button class="btn btn-search" type="submit">Найти</button>
+          </form>
+
+
+        <#--<p>
           <button class="btn btn-filtr" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Фильтр
           </button>
         </p>
-
-        <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>
+        <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>-->
 
         <div class="collapse" id="collapseExample">
           <form class="form-filtr">

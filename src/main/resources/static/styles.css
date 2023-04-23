@@ -275,6 +275,11 @@ nav{
     width: 24px;
 }
 
+.search-form{
+    display: flex;
+    flex-direction: row;
+    width: 100%; /* change this, if use add and filter functions*/
+}
 
 table {
     margin-top: 24px !important;

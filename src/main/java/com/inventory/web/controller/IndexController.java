@@ -1,13 +1,13 @@
 package com.inventory.web.controller;
 
+import com.inventory.web.model.Equipment;
 import com.inventory.web.model.EquipmentUnit;
 import com.inventory.web.model.TrainingCenter;
 import com.inventory.web.service.EquipmentUnitApiService;
 import com.inventory.web.service.TrainingCenterApiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +33,8 @@ public class IndexController {
     }
 
     private int pageCount;
+    private String invNumberOrSearchQuery = "";
+    private Equipment filterEquipment = null;
 
     @GetMapping
     public String show(Model model){
@@ -48,11 +50,23 @@ public class IndexController {
     }
 
     private void loadData(Model model){
-        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT, equipmentUnitApiService.getAll());
-        model.addAttribute("equipmentUnits", equipmentUnits);
+        List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAll();
+        if (!invNumberOrSearchQuery.equals("")) equipmentUnits = equipmentUnitApiService.searchByInventoryNumber(invNumberOrSearchQuery, equipmentUnits);
 
-        elementsCount = equipmentUnitApiService.getCount();
+        elementsCount = equipmentUnits.size();
         model.addAttribute("currentPageNumber", currentPageNumber);
+
+        equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT, equipmentUnits);
+        model.addAttribute("equipmentUnits", equipmentUnits);
+    }
+
+    @PostMapping("/search")
+    private String search(Model model, @RequestParam(value = "searchQuery") String inventoryNumber){
+        if (!inventoryNumber.equals("")) invNumberOrSearchQuery = inventoryNumber;
+        else invNumberOrSearchQuery = "";
+        currentPageNumber = 1;
+        loadData(model);
+        return "redirect:/equipment-units";
     }
 
     @GetMapping("/next")

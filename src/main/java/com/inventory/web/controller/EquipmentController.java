@@ -3,17 +3,14 @@ package com.inventory.web.controller;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.inventory.web.model.Equipment;
 import com.inventory.web.model.EquipmentType;
 import com.inventory.web.model.EquipmentUnit;
-import com.inventory.web.model.Location;
 import com.inventory.web.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
