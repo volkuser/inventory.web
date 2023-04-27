@@ -50,24 +50,33 @@ public class IndexController {
     }
 
     private void loadData(Model model){
+        // list at begin
         List<EquipmentUnit> equipmentUnits = equipmentUnitApiService.getAll();
-        if (!invNumberOrSearchQuery.equals("")) equipmentUnits = equipmentUnitApiService.searchByInventoryNumber(invNumberOrSearchQuery, equipmentUnits);
 
+        // search
+        if (!invNumberOrSearchQuery.equals("")) equipmentUnits = equipmentUnitApiService.searchByInventoryNumber(invNumberOrSearchQuery, equipmentUnits);
+        model.addAttribute("searchQuery", invNumberOrSearchQuery);
+
+        // pages
         elementsCount = equipmentUnits.size();
         model.addAttribute("currentPageNumber", currentPageNumber);
 
+        // list at end
         equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT, equipmentUnits);
         model.addAttribute("equipmentUnits", equipmentUnits);
     }
 
+    /* sorting */
+
     @PostMapping("/search")
     private String search(Model model, @RequestParam(value = "searchQuery") String inventoryNumber){
-        if (!inventoryNumber.equals("")) invNumberOrSearchQuery = inventoryNumber;
-        else invNumberOrSearchQuery = "";
+        invNumberOrSearchQuery = inventoryNumber;
         currentPageNumber = 1;
         loadData(model);
         return "redirect:/equipment-units";
     }
+
+    /* change pages */
 
     @GetMapping("/next")
     private String nextPage(Model model){

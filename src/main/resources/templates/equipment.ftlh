@@ -17,14 +17,14 @@
                 <img src="/equipment-units/${current.equipmentUnitId}/qr-code">
             </div>
             <div class="eq-qr-buttons">
-                <#--<button class="btn-print btn">
+                <#--<a class="btn-print btn" href="/equipment-units/${current.equipmentUnitId}/print-qr-code">
                     <img class="icon-white" src="/static/images/print Green.svg">
                     Печать
-                </button>
-                <button class="btn-qr-save btn">
+                </a>-->
+                <a class="btn-qr-save btn" href="/equipment-units/${current.equipmentUnitId}/save-qr-code">
                     <img class="icon-white" src="/static/images/down Green.svg">
                     Сохранить
-                </button>-->
+                </a>
             </div>
 
         </div>
@@ -89,9 +89,9 @@
                     </div>
 
                     <div class="eq-form-buttons">
-                        <#--<button class="eq-btn-delete btn">
+                        <button class="eq-btn-delete btn">
                             Удалить
-                        </button>-->
+                        </button>
                         <button class="eq-btn-save btn" type="submit">Сохранить</button>
                     </div>
                 </form>

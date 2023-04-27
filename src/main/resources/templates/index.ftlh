@@ -12,17 +12,16 @@
       <div class="input-group">
 
         <form class="search-form" method="post" action="/equipment-units/search">
-            <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" name="searchQuery"/>
+            <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" name="searchQuery" value="${searchQuery}"/>
             <button class="btn btn-search" type="submit">Найти</button>
           </form>
 
-
-        <#--<p>
+        <p>
           <button class="btn btn-filtr" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Фильтр
           </button>
         </p>
-        <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>-->
+        <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>
 
         <div class="collapse" id="collapseExample">
           <form class="form-filtr">
@@ -40,14 +39,15 @@
                 <input class="Audience_class first" name="Audience" type="number" placeholder="Аудитория">
                 <input class="Equipment_class" name="Equipment" type="text" placeholder="Оборудование">
 
-                <#--<div class="inPlace_class custom-control custom-checkbox">
-                  <label class="inPlace_label custom-control-label" for="inPlace">Наличие</label>
-                  <input type="checkbox" class="chek custom-control-input" id="inPlace">
-                </div>-->
-
               </div>
 
               <div class="column column-3">
+
+                <div class="inPlace_class custom-control custom-checkbox">
+                  <label class="inPlace_label custom-control-label" for="inPlace">Наличие</label>
+                  <input type="checkbox" class="chek custom-control-input" id="inPlace">
+                </div>
+
                 <div class="buttons">
                   <button type="reset" class="btn reset"></button>
                   <button class="btn save" type="button" name="save">Применить</button>

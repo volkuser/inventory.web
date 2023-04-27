@@ -15,12 +15,6 @@ public class EquipmentApiService {
 
     private RestTemplate restTemplate;
 
-    public List<Equipment> getAll() {
-        String url = "http://localhost:8081/equipments";
-        Equipment[] listWithEntities = restTemplate.getForObject(url, Equipment[].class);
-        return Arrays.asList(listWithEntities);
-    }
-
     public List<Equipment> getAllByEquipmentType(Long equipmentTypeId) {
         String url = "http://localhost:8081/equipments/equipmentType/" + equipmentTypeId;
         Equipment[] listWithEntities = restTemplate.getForObject(url, Equipment[].class);

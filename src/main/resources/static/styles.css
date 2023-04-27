@@ -278,7 +278,7 @@ nav{
 .search-form{
     display: flex;
     flex-direction: row;
-    width: 100%; /* change this, if use add and filter functions*/
+    width: 70%; /* 70 - with filters, 100 - no filters */
 }
 
 table {

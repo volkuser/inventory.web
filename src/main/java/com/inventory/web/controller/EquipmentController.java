@@ -1,6 +1,7 @@
 package com.inventory.web.controller;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.inventory.web.model.EquipmentType;
@@ -74,17 +75,34 @@ public class EquipmentController {
     }
 
     @GetMapping("/qr-code")
-    public void generateQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
-        UUID guidCode = equipmentUnitApiService.getById(id).getGuidCode();
-        String text = guidCode.toString();
-        BitMatrix bitMatrix = new QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, 343, 343);
-
-        BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+    public String generateQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
         OutputStream outputStream = response.getOutputStream();
-        ImageIO.write(qrImage, "png", outputStream);
+        ImageIO.write(generateQrCodeByGuidCode(id), "png", outputStream);
 
         response.setContentType("image/png");
         outputStream.flush();
         outputStream.close();
+
+        return "redirect:/equipment-units/" + id;
+    }
+
+    @GetMapping("/save-qr-code")
+    public void saveQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
+        response.setContentType("image/png");
+        response.setHeader("Content-Disposition", "attachment;filename=" + equipmentUnitApiService.getById(id).getInventoryNumber() + ".png");
+
+        OutputStream outputStream = response.getOutputStream();
+        ImageIO.write(generateQrCodeByGuidCode(id), "png", outputStream);
+
+        outputStream.flush();
+        outputStream.close();
+    }
+
+    private BufferedImage generateQrCodeByGuidCode(Long id) throws WriterException {
+        UUID guidCode = equipmentUnitApiService.getById(id).getGuidCode();
+        String text = guidCode.toString();
+        BitMatrix bitMatrix = new QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, 343, 343);
+
+        return MatrixToImageWriter.toBufferedImage(bitMatrix);
     }
 }
