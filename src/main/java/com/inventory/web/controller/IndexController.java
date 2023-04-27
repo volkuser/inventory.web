@@ -1,6 +1,5 @@
 package com.inventory.web.controller;
 
-import com.inventory.web.model.Equipment;
 import com.inventory.web.model.EquipmentUnit;
 import com.inventory.web.model.TrainingCenter;
 import com.inventory.web.service.EquipmentUnitApiService;
@@ -14,10 +13,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/equipment-units")
 public class IndexController {
-    public TrainingCenterApiService trainingCenterApiService;
-    public EquipmentUnitApiService equipmentUnitApiService;
+    private final TrainingCenterApiService trainingCenterApiService;
+    private final EquipmentUnitApiService equipmentUnitApiService;
 
-    public IndexController(TrainingCenterApiService trainingCenterApiService, EquipmentUnitApiService equipmentUnitApiService){
+    private IndexController(TrainingCenterApiService trainingCenterApiService, EquipmentUnitApiService equipmentUnitApiService){
         this.trainingCenterApiService = trainingCenterApiService;
         this.equipmentUnitApiService = equipmentUnitApiService;
     }
@@ -28,16 +27,13 @@ public class IndexController {
 
     private int getPageCount() {
         int test = (int)Math.ceil((double) elementsCount / PAGE_LIMIT);
-        pageCount = Math.max(test, 1);
-        return pageCount;
+        return Math.max(test, 1);
     }
 
-    private int pageCount;
     private String invNumberOrSearchQuery = "";
-    private Equipment filterEquipment = null;
 
     @GetMapping
-    public String show(Model model){
+    private String show(Model model){
         loadDataPlus(model);
         return "index";
     }
@@ -66,7 +62,7 @@ public class IndexController {
         model.addAttribute("equipmentUnits", equipmentUnits);
     }
 
-    /* sorting */
+    /* sort */
 
     @PostMapping("/search")
     private String search(Model model, @RequestParam(value = "searchQuery") String inventoryNumber){
@@ -76,7 +72,7 @@ public class IndexController {
         return "redirect:/equipment-units";
     }
 
-    /* change pages */
+    /* change page */
 
     @GetMapping("/next")
     private String nextPage(Model model){

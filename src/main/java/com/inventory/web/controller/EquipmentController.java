@@ -23,14 +23,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @RequestMapping("/equipment-units/{id}")
 public class EquipmentController {
-    public EquipmentUnitApiService equipmentUnitApiService;
-    public EquipmentApiService equipmentApiService;
-    public TrainingCenterApiService trainingCenterApiService;
-    public LocationApiService locationApiService;
-    public EquipmentTypeApiService equipmentTypeApiService;
+    private final EquipmentUnitApiService equipmentUnitApiService;
+    private final EquipmentApiService equipmentApiService;
+    private final TrainingCenterApiService trainingCenterApiService;
+    private final LocationApiService locationApiService;
+    private final EquipmentTypeApiService equipmentTypeApiService;
 
     @GetMapping
-    public String show(Model model, @PathVariable("id") Long id){
+    private String show(Model model, @PathVariable("id") Long id){
         loadData(model, id, (long) -1);
         return "equipment";
     }
@@ -52,14 +52,15 @@ public class EquipmentController {
     }
 
     @PostMapping
-    private String save(@PathVariable(value = "id") Long id, @ModelAttribute(value = "invNumber") String inventoryNumber,
-                        /*@ModelAttribute(value = "audience") String audience, */@RequestParam(value = "equipment") String equipment,
+    private String save(@PathVariable(value = "id") Long id, @RequestParam(value = "invNumber") String inventoryNumber,
+                        @RequestParam(value = "corpus") Long corpus, @RequestParam(value = "audience") String audience,
+                        @RequestParam(value = "equipment") Long equipment,
                         @RequestParam(value = "onStateAsString", defaultValue = "off") String onStateAsString){
         EquipmentUnit current = equipmentUnitApiService.getById(id);
 
         current.setInventoryNumber(inventoryNumber);
-        current.setEquipment(equipmentApiService.getById(Long.valueOf(equipment)));
-        //current.setLocation(locationApiService.getById(Long.parseLong(audience)));
+        current.setEquipment(equipmentApiService.getById(equipment));
+        current.setLocation(locationApiService.getByCenterIdAndNumber(corpus, audience));
         current.setOnState(onStateAsString.equals("on"));
 
         equipmentUnitApiService.update(id, current);
@@ -75,7 +76,7 @@ public class EquipmentController {
     }
 
     @GetMapping("/qr-code")
-    public String generateQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
+    private String generateQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
         OutputStream outputStream = response.getOutputStream();
         ImageIO.write(generateQrCodeByGuidCode(id), "png", outputStream);
 
@@ -87,7 +88,7 @@ public class EquipmentController {
     }
 
     @GetMapping("/save-qr-code")
-    public void saveQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
+    private void saveQrCode(@PathVariable(value = "id") Long id, HttpServletResponse response) throws Exception {
         response.setContentType("image/png");
         response.setHeader("Content-Disposition", "attachment;filename=" + equipmentUnitApiService.getById(id).getInventoryNumber() + ".png");
 

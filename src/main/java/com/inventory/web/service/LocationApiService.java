@@ -18,19 +18,18 @@ public class LocationApiService {
     public List<Location> getAll() {
         String url = "http://localhost:8081/locations";
         Location[] listWithEntities = restTemplate.getForObject(url, Location[].class);
+        assert listWithEntities != null;
         return Arrays.asList(listWithEntities);
     }
 
     public Location getById(Long id) {
         String url = "http://localhost:8081/locations/{id}";
-        Location location = restTemplate.getForObject(url, Location.class, id);
-        return location;
+        return restTemplate.getForObject(url, Location.class, id);
     }
 
     public Location create(Location entity) {
         String url = "http://localhost:8081/locations";
-        Location created = restTemplate.postForObject(url, entity, Location.class);
-        return created;
+        return restTemplate.postForObject(url, entity, Location.class);
     }
 
     public Location update(Long id, Location updated) {
@@ -42,5 +41,10 @@ public class LocationApiService {
     public void delete(Long id) {
         String url = "http://localhost:8081/locations/{id}";
         restTemplate.delete(url, id);
+    }
+
+    public Location getByCenterIdAndNumber(Long centerId, String number){
+        String url = "http://localhost:8081/locations/get-by-center-and-number?trainingCenterId=" + centerId + "&locationNumber=" + number;
+        return restTemplate.getForObject(url, Location.class);
     }
 }

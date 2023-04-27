@@ -18,19 +18,18 @@ public class EquipmentApiService {
     public List<Equipment> getAllByEquipmentType(Long equipmentTypeId) {
         String url = "http://localhost:8081/equipments/equipmentType/" + equipmentTypeId;
         Equipment[] listWithEntities = restTemplate.getForObject(url, Equipment[].class);
+        assert listWithEntities != null;
         return Arrays.asList(listWithEntities);
     }
 
     public Equipment getById(Long id) {
         String url = "http://localhost:8081/equipments/{id}";
-        Equipment entity = restTemplate.getForObject(url, Equipment.class, id);
-        return entity;
+        return restTemplate.getForObject(url, Equipment.class, id);
     }
 
     public Equipment create(Equipment entity) {
         String url = "http://localhost:8081/equipments";
-        Equipment created = restTemplate.postForObject(url, entity, Equipment.class);
-        return created;
+        return restTemplate.postForObject(url, entity, Equipment.class);
     }
 
     public Equipment update(Long id, Equipment updated) {

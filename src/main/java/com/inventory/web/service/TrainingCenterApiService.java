@@ -18,19 +18,18 @@ public class TrainingCenterApiService {
     public List<TrainingCenter> getAll() {
         String url = "http://localhost:8081/training-centers";
         TrainingCenter[] listWithEntities = restTemplate.getForObject(url, TrainingCenter[].class);
+        assert listWithEntities != null;
         return Arrays.asList(listWithEntities);
     }
 
     public TrainingCenter getById(Long id) {
         String url = "http://localhost:8081/training-centers/{id}";
-        TrainingCenter entity = restTemplate.getForObject(url, TrainingCenter.class, id);
-        return entity;
+        return restTemplate.getForObject(url, TrainingCenter.class, id);
     }
 
     public TrainingCenter create(TrainingCenter entity) {
         String url = "http://localhost:8081/training-centers";
-        TrainingCenter created = restTemplate.postForObject(url, entity, TrainingCenter.class);
-        return created;
+        return restTemplate.postForObject(url, entity, TrainingCenter.class);
     }
 
     public TrainingCenter update(Long id, TrainingCenter updated) {

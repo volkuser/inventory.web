@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
         public List<EquipmentUnit> getAll() {
             String url = "http://localhost:8081/equipment-units";
             EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class);
+            assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
         }
 
@@ -27,21 +28,19 @@ import org.springframework.web.client.RestTemplate;
             return Arrays.asList(listWithEntities);
         }*/
 
-        public int getCount() {
+        public int getCount(){
             String url = "http://localhost:8081/equipment-units/count";
             return restTemplate.getForObject(url, int.class) != null ? restTemplate.getForObject(url, int.class) : 0;
         }
 
         public EquipmentUnit getById(Long id) {
             String url = "http://localhost:8081/equipment-units/{id}";
-            EquipmentUnit entity = restTemplate.getForObject(url, EquipmentUnit.class, id);
-            return entity;
+            return restTemplate.getForObject(url, EquipmentUnit.class, id);
         }
 
         public EquipmentUnit create(EquipmentUnit entity) {
             String url = "http://localhost:8081/equipment-units";
-            EquipmentUnit created = restTemplate.postForObject(url, entity, EquipmentUnit.class);
-            return created;
+            return restTemplate.postForObject(url, entity, EquipmentUnit.class);
         }
 
         public EquipmentUnit update(Long id, EquipmentUnit updated) {
@@ -58,24 +57,28 @@ import org.springframework.web.client.RestTemplate;
         public List<EquipmentUnit> getAllPaginated(int offset, int limit, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/exist-paginated?offset=" + offset + "&limit=" + limit;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
+            assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
         }
 
         public List<EquipmentUnit> searchByInventoryNumber(String query, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/search?query=" + query;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
+            assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
         }
 
         public List<EquipmentUnit> getByEquipment(Long equipmentId, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/by-equipment/" + equipmentId;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
+            assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
         }
 
         public List<EquipmentUnit> getByLocation(String locationId, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/by-location/" + locationId;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
+            assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
         }
 

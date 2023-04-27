@@ -77,7 +77,7 @@
 
                     <div class="divspan div5-span5">
                         <span class="span5">Аудитория</span>
-                        <input class="Audience_class" value="${audience.locationNumber}" type="text"/>
+                        <input class="Audience_class" value="${audience.locationNumber}" type="text" name="audience"/>
                     </div>
                     <div class="divspan div6-span6">
                         <span class="span6">Наличие</span>
