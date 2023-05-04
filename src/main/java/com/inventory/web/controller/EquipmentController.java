@@ -6,6 +6,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.inventory.web.model.EquipmentType;
 import com.inventory.web.model.EquipmentUnit;
+import com.inventory.web.model.Location;
 import com.inventory.web.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -36,19 +37,38 @@ public class EquipmentController {
     }
 
     private void loadData(Model model, Long id, Long typeId) {
-        if (id == -1) return; /// TODO if new model
-        EquipmentUnit unit = equipmentUnitApiService.getById(id);
+        // load static selects
+        model.addAttribute("equipmentTypes", equipmentTypeApiService.getAll());
+        model.addAttribute("trainingCenters", trainingCenterApiService.getAll());
+
+        EquipmentUnit unit;
+        EquipmentType type;
+
+        if (id == -1) { // if new item
+            unit = new EquipmentUnit(); // stub
+
+            // default input, where can't do without this input
+            unit.setEquipmentUnitId((long) -1);
+            Location location = new Location();
+            location.setTrainingCenter(trainingCenterApiService.getById(trainingCenterApiService.getFirstId()));
+            unit.setLocation(location);
+            unit.setOnState(false);
+
+            type = (typeId != -1) ? equipmentTypeApiService.getById(typeId)
+                    : equipmentTypeApiService.getById(equipmentTypeApiService.getFirstId());
+        } else { // if current item
+            unit = equipmentUnitApiService.getById(id);
+
+            model.addAttribute("corpus", unit.getLocation().getTrainingCenter());
+            model.addAttribute("audience", unit.getLocation());
+
+            type = (typeId != -1) ? equipmentTypeApiService.getById(typeId) : unit.getEquipment().getEquipmentType();
+        }
+
         model.addAttribute("current", unit);
 
-        model.addAttribute("equipmentTypes", equipmentTypeApiService.getAll());
-
-        EquipmentType type = (typeId != -1) ? equipmentTypeApiService.getById(typeId) : unit.getEquipment().getEquipmentType();
         model.addAttribute("currentEquipmentType", type);
         model.addAttribute("equipments", equipmentApiService.getAllByEquipmentType(type.getEquipmentTypeId()));
-
-        model.addAttribute("trainingCenters", trainingCenterApiService.getAll());
-        /// TODO realize location by training center
-        model.addAttribute("audience", unit.getLocation());
     }
 
     @PostMapping
@@ -56,14 +76,15 @@ public class EquipmentController {
                         @RequestParam(value = "corpus") Long corpus, @RequestParam(value = "audience") String audience,
                         @RequestParam(value = "equipment") Long equipment,
                         @RequestParam(value = "onStateAsString", defaultValue = "off") String onStateAsString){
-        EquipmentUnit current = equipmentUnitApiService.getById(id);
+        EquipmentUnit current = id != -1 ? equipmentUnitApiService.getById(id) : new EquipmentUnit();
 
         current.setInventoryNumber(inventoryNumber);
         current.setEquipment(equipmentApiService.getById(equipment));
         current.setLocation(locationApiService.getByCenterIdAndNumber(corpus, audience));
         current.setOnState(onStateAsString.equals("on"));
 
-        equipmentUnitApiService.update(id, current);
+        if (id != -1) equipmentUnitApiService.update(id, current);
+        else equipmentUnitApiService.create(current);
 
         return "redirect:/equipment-units/" + id;
     }

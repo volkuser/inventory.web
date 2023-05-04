@@ -71,7 +71,7 @@
         <div class="modal-body">
           <a href="#newType" role="button"  data-bs-toggle="modal" >новый тип оборудования</a>
           <a href="#newEquipment" role="button"  data-bs-toggle="modal">новое оборудование</a>
-          <a href="#newUnit">новая единица оборудования</a>
+          <a href="/equipment-units/-1">новая единица оборудования</a>
         </div>
       </div>
     </div>

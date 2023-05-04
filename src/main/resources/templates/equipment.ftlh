@@ -10,24 +10,25 @@
     </div>
 
     <div class="eq-section-2">
+        <#if current.equipmentUnitId != -1>
+            <div class="section-qr">
 
-        <div class="section-qr">
+                <div class="img-box">
+                    <img src="/equipment-units/${current.equipmentUnitId}/qr-code">
+                </div>
+                <div class="eq-qr-buttons">
+                    <#--<a class="btn-print btn" href="/equipment-units/${current.equipmentUnitId}/print-qr-code">
+                        <img class="icon-white" src="/static/images/print Green.svg">
+                        Печать
+                    </a>-->
+                    <a class="btn-qr-save btn" href="/equipment-units/${current.equipmentUnitId}/save-qr-code">
+                        <img class="icon-white" src="/static/images/down Green.svg">
+                        Сохранить
+                    </a>
+                </div>
 
-            <div class="img-box">
-                <img src="/equipment-units/${current.equipmentUnitId}/qr-code">
             </div>
-            <div class="eq-qr-buttons">
-                <#--<a class="btn-print btn" href="/equipment-units/${current.equipmentUnitId}/print-qr-code">
-                    <img class="icon-white" src="/static/images/print Green.svg">
-                    Печать
-                </a>-->
-                <a class="btn-qr-save btn" href="/equipment-units/${current.equipmentUnitId}/save-qr-code">
-                    <img class="icon-white" src="/static/images/down Green.svg">
-                    Сохранить
-                </a>
-            </div>
-
-        </div>
+        </#if>
 
         <div class="eq-forma">
             <div class="divspan div2-span2">
@@ -49,7 +50,7 @@
                     <span class="span3">Оборудование</span>
                     <select class="Equipment_class first custom-select" name="equipment">
                         <#list equipments as equipment>
-                            <#if equipment.equals(current.equipment)>
+                            <#if current.equipment?? && equipment.equals(current.equipment)>
                                 <option class="op1" value="${equipment.equipmentId}" selected>${equipment.modelName}</option>
                             <#else>
                                 <option class="op2" value="${equipment.equipmentId}">${equipment.modelName}</option>
@@ -59,8 +60,12 @@
                 </div>
                 <div class="divspan div1-span1">
                     <span class="span1">Инвентарный номер</span>
-                    <input class="invNumber_class" name="invNumber" type="number" placeholder="Инвентарный номер"
-                           value="${current.inventoryNumber}">
+                    <#if current.inventoryNumber??>
+                        <input class="invNumber_class" name="invNumber" type="number" placeholder="Инвентарный номер"
+                               value="${current.inventoryNumber}">
+                    <#else>
+                        <input class="invNumber_class" name="invNumber" type="number" placeholder="Инвентарный номер">
+                    </#if>
                 </div>
                 <div class="divspan div4-span4">
                     <span class="span4">Корпус</span>
@@ -77,7 +82,11 @@
 
                     <div class="divspan div5-span5">
                         <span class="span5">Аудитория</span>
-                        <input class="Audience_class" value="${audience.locationNumber}" type="text" name="audience"/>
+                        <#if current.location.locationNumber??>
+                            <input class="Audience_class" value="${audience.locationNumber}" type="text" name="audience"/>
+                        <#else>
+                            <input class="Audience_class" type="text" name="audience"/>
+                        </#if>
                     </div>
                     <div class="divspan div6-span6">
                         <span class="span6">Наличие</span>

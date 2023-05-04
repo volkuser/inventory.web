@@ -22,12 +22,6 @@ import org.springframework.web.client.RestTemplate;
             return Arrays.asList(listWithEntities);
         }
 
-        /*public List<EquipmentUnit> getAllPaginated(int offset, int limit) {
-            String url = "http://localhost:8081/equipment-units/paginated?offset=" + offset + "&limit=" + limit;
-            EquipmentUnit[] listWithEntities = restTemplate.getForObject(url, EquipmentUnit[].class);
-            return Arrays.asList(listWithEntities);
-        }*/
-
         public int getCount(){
             String url = "http://localhost:8081/equipment-units/count";
             return restTemplate.getForObject(url, int.class) != null ? restTemplate.getForObject(url, int.class) : 0;

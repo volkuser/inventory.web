@@ -42,4 +42,9 @@ public class TrainingCenterApiService {
         String url = "http://localhost:8081/training-centers/{id}";
         restTemplate.delete(url, id);
     }
+
+    public Long getFirstId(){
+        String url = "http://localhost:8081/training-centers/first-id";
+        return restTemplate.getForObject(url, Long.class);
+    }
 }
