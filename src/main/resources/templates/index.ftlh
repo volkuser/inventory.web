@@ -43,10 +43,10 @@
 
               <div class="column column-3">
 
-                <div class="inPlace_class custom-control custom-checkbox">
+                <#--<div class="inPlace_class custom-control custom-checkbox">
                   <label class="inPlace_label custom-control-label" for="inPlace">Наличие</label>
                   <input type="checkbox" class="chek custom-control-input" id="inPlace">
-                </div>
+                </div>-->
 
                 <div class="buttons">
                   <button type="reset" class="btn reset"></button>

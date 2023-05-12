@@ -4,6 +4,7 @@ import com.inventory.web.model.EquipmentUnit;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ import org.springframework.web.client.RestTemplate;
         public EquipmentUnit getById(Long id) {
             String url = "http://localhost:8081/equipment-units/{id}";
             return restTemplate.getForObject(url, EquipmentUnit.class, id);
+        }
+
+        public EquipmentUnit getByGuid(UUID guidCode) {
+            String url = "http://localhost:8081/equipment-units/guid/" + guidCode;
+            return restTemplate.getForObject(url, EquipmentUnit.class);
         }
 
         public EquipmentUnit create(EquipmentUnit entity) {

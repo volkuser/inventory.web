@@ -78,15 +78,25 @@ public class EquipmentController {
                         @RequestParam(value = "onStateAsString", defaultValue = "off") String onStateAsString){
         EquipmentUnit current = id != -1 ? equipmentUnitApiService.getById(id) : new EquipmentUnit();
 
+        current.setEquipmentUnitId(id);
         current.setInventoryNumber(inventoryNumber);
         current.setEquipment(equipmentApiService.getById(equipment));
         current.setLocation(locationApiService.getByCenterIdAndNumber(corpus, audience));
         current.setOnState(onStateAsString.equals("on"));
 
-        if (id != -1) equipmentUnitApiService.update(id, current);
-        else equipmentUnitApiService.create(current);
+        UUID uuid;
+        if (id != -1) {
+            equipmentUnitApiService.update(id, current);
+            uuid = current.getGuidCode();
+        }
+        else {
+            uuid = UUID.randomUUID();
+            current.setGuidCode(uuid);
 
-        return "redirect:/equipment-units/" + id;
+            equipmentUnitApiService.create(current);
+        }
+
+        return "redirect:/equipment-units/" + equipmentUnitApiService.getByGuid(uuid).getEquipmentUnitId();
     }
 
     @PostMapping("/type-change")
