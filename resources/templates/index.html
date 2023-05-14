@@ -43,9 +43,12 @@
   <div class="container">
 
     <div class="input-group">
-      <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" />
+      <div class="search-div">
+         <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" />
       <button type="button" class="btn btn-search">Найти</button>
 
+      </div>
+     
 
       <p>
         <button class="btn btn-filtr" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -120,7 +123,11 @@
       <div class="modal-body modal-body-newType">
         <form >
           <div class="forma">
-            <input type="text" class="Type_class first" name="Type"   placeholder="Тип">
+            <select class="Type_class first custom-select" name="Type"   placeholder="Тип">
+              <option class="op1" value="1">вариант типа 1</option>
+              <option class="op2" value="2">вариант типа 2</option>
+              <option class="op3" value="3">вариант типа 3</option>
+            </select>
               <div class="modal-buttons">
                 <a class="btn-cancel" href="#">oтмeнить</a>
                 <button class="btn save">
@@ -144,8 +151,16 @@
       <div class="modal-body modal-body-newEquipment">
         <form >
           <div class="forma">
-            <input type="text" class="Type_class first" name="Type"   placeholder="Тип">
-            <input type="text" class="Country_class first" name="Country"   placeholder="Страна">
+            <select class="Type_class first custom-select" name="Type"   placeholder="Тип">
+              <option class="op1" value="1">вариант типа 1</option>
+              <option class="op2" value="2">вариант типа 2</option>
+              <option class="op3" value="3">вариант типа 3</option>
+            </select>
+            <select class="Country_class first custom-select" name="Country"   placeholder="Страна">
+              <option class="op1" value="1">вариант страны 1</option>
+              <option class="op2" value="2">вариант страны 2</option>
+              <option class="op3" value="3">вариант страны 3</option>
+            </select>
             <input type="text" class="Equipment_class first" name="Equipment"   placeholder="Оборудование">
               <div class="modal-buttons">
                 <a class="btn-cancel" href="#">oтмeнить</a>
@@ -167,7 +182,7 @@
 
 
 
-<div class="container">
+<div class="container table-container">
   <table class="table">
   <thead class="thead">
     <tr>
@@ -274,7 +289,7 @@
   </tbody>
 </table>
 
-<div class="buttons">
+<div class="buttons buttons-bottom">
 
   <button class="btn page-back">
     <div class="left-arrow"></div>
