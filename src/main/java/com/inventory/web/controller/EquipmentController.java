@@ -99,6 +99,13 @@ public class EquipmentController {
         return "redirect:/equipment-units/" + equipmentUnitApiService.getByGuid(uuid).getEquipmentUnitId();
     }
 
+    @GetMapping("/delete")
+    private String delete(@PathVariable(value = "id") Long id) {
+        equipmentUnitApiService.delete(id);
+
+        return "redirect:/equipment-units";
+    }
+
     @PostMapping("/type-change")
     private String typeChanged(Model model, @PathVariable(value = "id") Long id, @RequestParam(value = "type") Long typeId){
         loadData(model, id, typeId);

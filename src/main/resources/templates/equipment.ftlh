@@ -98,9 +98,9 @@
                     </div>
 
                     <div class="eq-form-buttons">
-                        <button class="eq-btn-delete btn">
+                        <a class="eq-btn-delete btn" href="/equipment-units/${current.equipmentUnitId}/delete">
                             Удалить
-                        </button>
+                        </a>
                         <button class="eq-btn-save btn" type="submit">Сохранить</button>
                     </div>
                 </form>
