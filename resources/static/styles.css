@@ -785,4 +785,42 @@ color: #ffffff !important;
     .buttons-bottom{
         justify-content: flex-start;
     }
+    .section-qr{
+        display: none;
+    }
+    .divspan{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .eq-forma span{
+        padding-left: 20px;
+    }
+    .eq-forma .Type_class, 
+    .eq-forma .Audience_class, 
+    .eq-forma .Corpus_class, 
+    .eq-forma .Equipment_class, 
+    .eq-forma .Country_class, 
+    .eq-forma .invNumber_class{
+        margin-left: 16px;
+    }
+    .eq-section-1{
+        padding-top: 80px;
+        margin-bottom: 30px;
+    }
+    .div6-span6{
+        flex-direction: row;
+    }
+    .eq-section-2 .chek {
+        margin-right: auto;
+    }
+    .eq-form-buttons{
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .div6-span6 span{
+        padding-right: 30px;
+    }
+    .add{
+        margin-left: auto !important;
+    }
 }
