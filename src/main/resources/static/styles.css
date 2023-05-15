@@ -11,6 +11,7 @@
     padding: 0px !important;
 }
 
+
 body{
     background-color: #E5F4F4 !important;
 }
@@ -275,11 +276,6 @@ nav{
     width: 24px;
 }
 
-.search-form{
-    display: flex;
-    flex-direction: row;
-    width: 70%; /* 70 - with filters, 100 - no filters */
-}
 
 table {
     margin-top: 24px !important;
@@ -291,6 +287,10 @@ table {
     color: #426671 !important;
     background-color: #fff;
     border-radius: 36px 36px 0px 0px !important;
+}
+
+.table-container {
+    overflow-x: auto;
 }
 
 thead {
@@ -531,6 +531,7 @@ thead {
 
 
 
+
 /* ========================================
 ========================================
 =============================== */
@@ -573,7 +574,7 @@ thead {
 }
 
 .img-box {
-    position: relative;
+    padding: 40px;
     background-color: #fff;
     display: flex;
     width: auto;
@@ -582,7 +583,6 @@ thead {
 .img-box img{
     width: 100%;
 }
-
 .divspan {
     display: flex;
     flex-direction: row;
@@ -644,7 +644,6 @@ thead {
 }
 
 .eq-forma{
-    margin-left: 100px;
     position: relative;
 }
 
@@ -702,4 +701,126 @@ thead {
 
 .pr-h1 {
     padding-top: 0px !important;
+}
+.search-form{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.form-control{
+    width: 100% !important;
+}
+
+.add{
+    margin-left: 40px !important;
+}
+
+
+@media (max-width: 425px){,,
+    body {
+        padding: 4px !important;
+    }
+    h1{
+        font-size: 24px !important;
+        padding-top: 80px;
+        padding-bottom: 32px;
+        text-align: center;
+    }
+    .search-div{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .btn-search{
+        margin-right: 0px;
+        padding: 8px 20px !important;
+    }
+    .btn-filtr{
+        padding: 8px 20px !important;
+    }
+    .form-control{
+        padding-left: 20px !important;
+    }
+
+    .card,
+    .card-body,
+    .collapse{
+        width: 320px !important;
+    }
+
+    .card{
+        flex-direction: column !important;
+    }
+    .card,
+    .card-body{
+        padding: 20px !important;
+        padding-bottom: 0px !important;
+    }
+    .Type_class,
+    .Audience_class,
+    .Corpus_class,
+    .Equipment_class,
+    .Country_class,
+    .invNumber_class {
+        width: 280px !important;
+        padding: 10px 0px 8px 10px;
+    }
+    .card .column{
+        margin-bottom: 20px;
+    }
+    .Equipment_class{
+        margin-bottom: 30px;
+    }
+    .column-3 .buttons{
+        justify-content: flex-end;
+    }
+    .reset{
+        margin-left: 0px !important;
+    }
+    .add{
+        margin-left: auto;
+    }
+    .buttons-bottom{
+        justify-content: flex-start;
+    }
+    .section-qr{
+        display: none;
+    }
+    .divspan{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .eq-forma span{
+        padding-left: 20px;
+    }
+    .eq-forma .Type_class,
+    .eq-forma .Audience_class,
+    .eq-forma .Corpus_class,
+    .eq-forma .Equipment_class,
+    .eq-forma .Country_class,
+    .eq-forma .invNumber_class{
+        margin-left: 16px;
+    }
+    .eq-section-1{
+        padding-top: 80px;
+        margin-bottom: 30px;
+    }
+    .div6-span6{
+        flex-direction: row;
+    }
+    .eq-section-2 .chek {
+        margin-right: auto;
+    }
+    .eq-form-buttons{
+        margin-top: 30px;
+        padding-bottom: 20px;
+    }
+    .div6-span6 span{
+        padding-right: 30px;
+    }
+    .add{
+        margin-left: auto !important;
+    }
 }

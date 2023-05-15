@@ -14,7 +14,7 @@
         <form class="search-form" method="post" action="/equipment-units/search">
             <input type="search" class="form-control" placeholder="Поиск" aria-label="Search" aria-describedby="search-addon" name="searchQuery" value="${searchQuery}"/>
             <button class="btn btn-search" type="submit">Найти</button>
-          </form>
+        </form>
 
         <p>
           <button class="btn btn-filtr" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -125,7 +125,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container table-container">
     <table class="table">
       <thead class="thead">
       <tr>
@@ -157,7 +157,7 @@
       </tbody>
     </table>
 
-    <div class="buttons">
+    <div class="buttons buttons-bottom">
 
       <a class="btn page-back" href="/equipment-units/previous">
         <div class="left-arrow"></div>
