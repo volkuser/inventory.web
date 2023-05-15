@@ -75,7 +75,7 @@ import org.springframework.web.client.RestTemplate;
             return Arrays.asList(listWithEntities);
         }
 
-        public List<EquipmentUnit> getByLocation(String locationId, List<EquipmentUnit> equipmentUnits) {
+        public List<EquipmentUnit> getByLocation(Long locationId, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/by-location/" + locationId;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
             assert listWithEntities != null;

@@ -1,8 +1,10 @@
 package com.inventory.web.controller;
 
 import com.inventory.web.model.EquipmentUnit;
+import com.inventory.web.model.Location;
 import com.inventory.web.model.TrainingCenter;
 import com.inventory.web.service.EquipmentUnitApiService;
+import com.inventory.web.service.LocationApiService;
 import com.inventory.web.service.TrainingCenterApiService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +16,13 @@ import java.util.List;
 @RequestMapping("/equipment-units")
 public class IndexController {
     private final TrainingCenterApiService trainingCenterApiService;
+    private final LocationApiService locationApiService;
     private final EquipmentUnitApiService equipmentUnitApiService;
 
-    private IndexController(TrainingCenterApiService trainingCenterApiService, EquipmentUnitApiService equipmentUnitApiService){
+    private IndexController(TrainingCenterApiService trainingCenterApiService, LocationApiService locationApiService,
+                            EquipmentUnitApiService equipmentUnitApiService){
         this.trainingCenterApiService = trainingCenterApiService;
+        this.locationApiService = locationApiService;
         this.equipmentUnitApiService = equipmentUnitApiService;
     }
 
@@ -31,6 +36,8 @@ public class IndexController {
     }
 
     private String invNumberOrSearchQuery = "";
+    private int filterIsWork = 0;
+    private Location filterLocation;
 
     @GetMapping
     private String show(Model model){
@@ -53,6 +60,12 @@ public class IndexController {
         if (!invNumberOrSearchQuery.equals("")) equipmentUnits = equipmentUnitApiService.searchByInventoryNumber(invNumberOrSearchQuery, equipmentUnits);
         model.addAttribute("searchQuery", invNumberOrSearchQuery);
 
+        // filter
+        if (filterLocation != null && filterIsWork < 3) {
+            equipmentUnits = equipmentUnitApiService.getByLocation(filterLocation.getLocationId(), equipmentUnits);
+            filterIsWork++;
+        }
+
         // pages
         elementsCount = equipmentUnits.size();
         model.addAttribute("currentPageNumber", currentPageNumber);
@@ -68,6 +81,14 @@ public class IndexController {
     private String search(Model model, @RequestParam(value = "searchQuery") String inventoryNumber){
         invNumberOrSearchQuery = inventoryNumber;
         currentPageNumber = 1;
+        loadData(model);
+        return "redirect:/equipment-units";
+    }
+
+    @PostMapping("/filter")
+    private String filter(Model model, @RequestParam(value = "Corpus") Long corpus, @RequestParam(value = "Audience") String audience){
+        filterLocation = locationApiService.getByCenterIdAndNumber(corpus, audience);
+        filterIsWork = 0;
         loadData(model);
         return "redirect:/equipment-units";
     }

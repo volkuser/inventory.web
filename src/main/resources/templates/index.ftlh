@@ -24,7 +24,7 @@
         <button class="btn add" data-bs-toggle="modal" data-bs-target="#exampleModal" ></button>
 
         <div class="collapse" id="collapseExample">
-          <form class="form-filtr">
+          <form class="form-filtr" method="post" action="/equipment-units/filter">
             <div class="card card-body">
               <div class="column column-1">
               <select class="Corpus_class first custom-select" id="Corpus" name="Corpus">
@@ -32,12 +32,12 @@
                   <option value="${trainingCenter.trainingCenterId}">${trainingCenter.centerAddress}</option>
                 </#list>
               </select>
-              <input class="Type_class" name="Type" type="text" placeholder="Тип">
+              <#--<input class="Type_class" name="Type" type="text" placeholder="Тип">-->
             </div>
               <div class="column column-2">
 
                 <input class="Audience_class first" name="Audience" type="number" placeholder="Аудитория">
-                <input class="Equipment_class" name="Equipment" type="text" placeholder="Оборудование">
+                <#--<input class="Equipment_class first custom-select" name="equipment" type="text" placeholder="Оборудование">-->
 
               </div>
 
@@ -50,7 +50,7 @@
 
                 <div class="buttons">
                   <button type="reset" class="btn reset"></button>
-                  <button class="btn save" type="button" name="save">Применить</button>
+                  <button class="btn save" type="submit" name="save">Применить</button>
                 </div>
 
               </div>
