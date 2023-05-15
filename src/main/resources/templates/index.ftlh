@@ -84,12 +84,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
         </div>
         <div class="modal-body modal-body-newType">
-          <form >
+          <form method="post" action="/equipment-units/new-equipment-type">
             <div class="forma">
-              <input type="text" class="Type_class first" name="Type"   placeholder="Тип">
+              <input type="text" class="Type_class first" name="Type" placeholder="Тип">
               <div class="modal-buttons">
                 <a class="btn-cancel" href="#">oтмeнить</a>
-                <button class="btn save">
+                <button type="submit" class="btn save">
                   Coxpaнить
                 </button>
               </div>
@@ -107,14 +107,18 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
         </div>
         <div class="modal-body modal-body-newEquipment">
-          <form >
+          <form method="post" action="/equipment-units/new-equipment">
             <div class="forma">
-              <input type="text" class="Type_class first" name="Type" placeholder="Тип">
-              <input type="text" class="Country_class first" name="Country" placeholder="Страна">
+              <select class="Type_class first custom-select" name="Type" placeholder="Тип">
+                <#list equipmentTypes as equipmentType>
+                  <option class="op1" value="${equipmentType.equipmentTypeId}">${equipmentType.equipmentTypeName}</option>
+                </#list>
+              </select>
+              <input type="text" class="Country_class first" name="Manufacturer" placeholder="Производитель">
               <input type="text" class="Equipment_class first" name="Equipment" placeholder="Оборудование">
               <div class="modal-buttons">
                 <a class="btn-cancel" href="#">oтмeнить</a>
-                <button class="btn save">
+                <button class="btn save" type="submit">
                   Coxpaнить
                 </button>
               </div>

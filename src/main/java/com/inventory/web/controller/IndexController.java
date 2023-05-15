@@ -1,11 +1,7 @@
 package com.inventory.web.controller;
 
-import com.inventory.web.model.EquipmentUnit;
-import com.inventory.web.model.Location;
-import com.inventory.web.model.TrainingCenter;
-import com.inventory.web.service.EquipmentUnitApiService;
-import com.inventory.web.service.LocationApiService;
-import com.inventory.web.service.TrainingCenterApiService;
+import com.inventory.web.model.*;
+import com.inventory.web.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +13,17 @@ import java.util.List;
 public class IndexController {
     private final TrainingCenterApiService trainingCenterApiService;
     private final LocationApiService locationApiService;
+    private final EquipmentApiService equipmentApiService;
+    private final EquipmentTypeApiService equipmentTypeApiService;
     private final EquipmentUnitApiService equipmentUnitApiService;
 
     private IndexController(TrainingCenterApiService trainingCenterApiService, LocationApiService locationApiService,
+                            EquipmentApiService equipmentApiService, EquipmentTypeApiService equipmentTypeApiService,
                             EquipmentUnitApiService equipmentUnitApiService){
         this.trainingCenterApiService = trainingCenterApiService;
         this.locationApiService = locationApiService;
+        this.equipmentApiService = equipmentApiService;
+        this.equipmentTypeApiService = equipmentTypeApiService;
         this.equipmentUnitApiService = equipmentUnitApiService;
     }
 
@@ -50,6 +51,9 @@ public class IndexController {
 
         List<TrainingCenter> trainingCenters = trainingCenterApiService.getAll();
         model.addAttribute("trainingCenters", trainingCenters);
+
+        List<EquipmentType> equipmentTypes = equipmentTypeApiService.getAll();
+        model.addAttribute("equipmentTypes", equipmentTypes);
     }
 
     private void loadData(Model model){
@@ -73,6 +77,28 @@ public class IndexController {
         // list at end
         equipmentUnits = equipmentUnitApiService.getAllPaginated(currentPageNumber - 1, PAGE_LIMIT, equipmentUnits);
         model.addAttribute("equipmentUnits", equipmentUnits);
+    }
+
+    /* new */
+
+    @PostMapping("/new-equipment-type")
+    private String newEquipmentType(@RequestParam(value = "Type") String typeName){
+        EquipmentType added = new EquipmentType();
+        added.setEquipmentTypeName(typeName);
+        equipmentTypeApiService.create(added);
+        return "redirect:/equipment-units";
+    }
+
+    @PostMapping("/new-equipment")
+    private String newEquipment(@RequestParam(value = "Type") Long typeId,
+                                @RequestParam(value = "Manufacturer") String manufacturer,
+                                @RequestParam(value = "Equipment") String equipment){
+        Equipment added = new Equipment();
+        added.setEquipmentType(equipmentTypeApiService.getById(typeId));
+        added.setManufacturer(manufacturer);
+        added.setModelName(equipment);
+        equipmentApiService.create(added);
+        return "redirect:/equipment-units";
     }
 
     /* sort */
