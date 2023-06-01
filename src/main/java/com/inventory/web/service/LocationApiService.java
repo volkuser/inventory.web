@@ -15,32 +15,9 @@ public class LocationApiService {
 
     private RestTemplate restTemplate;
 
-    public List<Location> getAll() {
-        String url = "http://localhost:8081/locations";
-        Location[] listWithEntities = restTemplate.getForObject(url, Location[].class);
-        assert listWithEntities != null;
-        return Arrays.asList(listWithEntities);
-    }
-
-    public Location getById(Long id) {
-        String url = "http://localhost:8081/locations/{id}";
-        return restTemplate.getForObject(url, Location.class, id);
-    }
-
     public Location create(Location entity) {
         String url = "http://localhost:8081/locations";
         return restTemplate.postForObject(url, entity, Location.class);
-    }
-
-    public Location update(Long id, Location updated) {
-        String url = "http://localhost:8081/locations/{id}";
-        restTemplate.put(url, updated, id);
-        return updated;
-    }
-
-    public void delete(Long id) {
-        String url = "http://localhost:8081/locations/{id}";
-        restTemplate.delete(url, id);
     }
 
     public Location getByCenterIdAndNumber(Long centerId, String number){

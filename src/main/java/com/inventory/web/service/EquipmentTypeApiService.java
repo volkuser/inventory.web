@@ -32,17 +32,6 @@ public class EquipmentTypeApiService {
         return restTemplate.postForObject(url, entity, EquipmentType.class);
     }
 
-    public EquipmentType update(Long id, EquipmentType updated) {
-        String url = "http://localhost:8081/equipment-types/{id}";
-        restTemplate.put(url, updated, id);
-        return updated;
-    }
-
-    public void delete(Long id) {
-        String url = "http://localhost:8081/equipment-types/{id}";
-        restTemplate.delete(url, id);
-    }
-
     public Long getFirstId(){
         String url = "http://localhost:8081/equipment-types/first-id";
         return restTemplate.getForObject(url, Long.class);

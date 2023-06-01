@@ -32,17 +32,6 @@ public class TrainingCenterApiService {
         return restTemplate.postForObject(url, entity, TrainingCenter.class);
     }
 
-    public TrainingCenter update(Long id, TrainingCenter updated) {
-        String url = "http://localhost:8081/training-centers/{id}";
-        restTemplate.put(url, updated, id);
-        return updated;
-    }
-
-    public void delete(Long id) {
-        String url = "http://localhost:8081/training-centers/{id}";
-        restTemplate.delete(url, id);
-    }
-
     public Long getFirstId(){
         String url = "http://localhost:8081/training-centers/first-id";
         return restTemplate.getForObject(url, Long.class);

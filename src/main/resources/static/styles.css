@@ -719,7 +719,7 @@ thead {
 }
 
 
-@media (max-width: 425px){,,
+@media (max-width: 425px){
     body {
         padding: 4px !important;
     }

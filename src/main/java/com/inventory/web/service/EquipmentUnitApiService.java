@@ -23,11 +23,6 @@ import org.springframework.web.client.RestTemplate;
             return Arrays.asList(listWithEntities);
         }
 
-        public int getCount(){
-            String url = "http://localhost:8081/equipment-units/count";
-            return restTemplate.getForObject(url, int.class) != null ? restTemplate.getForObject(url, int.class) : 0;
-        }
-
         public EquipmentUnit getById(Long id) {
             String url = "http://localhost:8081/equipment-units/{id}";
             return restTemplate.getForObject(url, EquipmentUnit.class, id);
@@ -63,13 +58,6 @@ import org.springframework.web.client.RestTemplate;
 
         public List<EquipmentUnit> searchByInventoryNumber(String query, List<EquipmentUnit> equipmentUnits) {
             String url = "http://localhost:8081/equipment-units/search?query=" + query;
-            EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
-            assert listWithEntities != null;
-            return Arrays.asList(listWithEntities);
-        }
-
-        public List<EquipmentUnit> getByEquipment(Long equipmentId, List<EquipmentUnit> equipmentUnits) {
-            String url = "http://localhost:8081/equipment-units/by-equipment/" + equipmentId;
             EquipmentUnit[] listWithEntities = restTemplate.postForObject(url, equipmentUnits, EquipmentUnit[].class);
             assert listWithEntities != null;
             return Arrays.asList(listWithEntities);
